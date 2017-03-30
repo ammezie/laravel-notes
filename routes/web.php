@@ -14,4 +14,8 @@
 Auth::routes();
 
 Route::get('/', 'NotesController@index');
-Route::resource('notes', 'NotesController');
+Route::get('create', 'NotesController@create');
+Route::post('create', 'NotesController@store');
+Route::get('edit/{note}', 'NotesController@edit');
+Route::patch('edit/{note}', 'NotesController@update');
+// Route::resource('notes', 'NotesController');

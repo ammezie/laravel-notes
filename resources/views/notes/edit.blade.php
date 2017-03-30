@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Edit note</div>
                     <div class="panel-body">
-                        <form action="{{ route('notes.update', [$note->slug]) }}" method="POST" class="form" role="form">
+                        <form action="{{ url('edit', [$note->slug]) }}" method="POST" class="form" role="form">
                             <input type="hidden" name="_method" value="PATCH">
                             {{ csrf_field() }}
 

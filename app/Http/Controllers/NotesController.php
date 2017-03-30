@@ -54,22 +54,11 @@ class NotesController extends Controller
             'body'    => $request->body
         ]);
 
-        return redirect()->route('notes.index');
+        return redirect('/');
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Note  $note
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Note $note)
-    {
-        return $note;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified note.
      *
      * @param  \App\Note  $note
      * @return \Illuminate\Http\Response
@@ -80,7 +69,7 @@ class NotesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified note.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Note  $note
@@ -94,17 +83,6 @@ class NotesController extends Controller
 
         $note->save();
 
-        return redirect()->route('notes.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect('/');
     }
 }

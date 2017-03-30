@@ -43,7 +43,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ route('notes.create') }}">Create Note</a></li>
+                        <li><a href="{{ url('create') }}">Create Note</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

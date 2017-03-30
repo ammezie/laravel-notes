@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Create new note</div>
                     <div class="panel-body">
-                        <form action="{{ route('notes.store') }}" method="POST" class="form" role="form">
+                        <form action="{{ url('create') }}" method="POST" class="form" role="form">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">

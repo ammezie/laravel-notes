@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Create a new note')
-
 @section('content')
     <div class="container">
         <div class="row">

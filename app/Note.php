@@ -3,12 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
 
 class Note extends Model
 {
-    use Sluggable;
-
     /**
      * Fields that can not be mass assigned
      * 
@@ -25,19 +22,5 @@ class Note extends Model
     public function getRouteKeyName()
     {
         return 'slug';
-    }
-
-    /**
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
-     */
-    public function sluggable()
-    {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
     }
 }

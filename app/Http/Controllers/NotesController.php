@@ -50,6 +50,7 @@ class NotesController extends Controller
         $note = Note::create([
             'user_id' => $request->user()->id,
             'title'   => $request->title,
+            'slug'    => str_slug($request->title) . str_random(10),
             'body'    => $request->body
         ]);
 

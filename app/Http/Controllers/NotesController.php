@@ -79,7 +79,6 @@ class NotesController extends Controller
     {
         $note->title = $request->title;
         $note->body = $request->body;
-        $note->user_id = $request->user()->id;
 
         $note->save();
 

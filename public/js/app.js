@@ -1862,7 +1862,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        Echo.join('note').here(function (users) {
+        Echo.join('note.' + this.note.slug).here(function (users) {
             _this.usersEditing = users;
         }).joining(function (user) {
             _this.usersEditing.push(user);

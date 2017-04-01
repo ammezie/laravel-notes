@@ -11,7 +11,7 @@
 |
 */
 
-Broadcast::channel('note', function ($user) {
+Broadcast::channel('note.{slug}', function ($user, $slug) {
     return [
         'id'   => $user->id,
         'name' => $user->name

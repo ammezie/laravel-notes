@@ -32,7 +32,7 @@
         },
 
         mounted() {
-            Echo.join('note')
+            Echo.join(`note.${this.note.slug}`)
                 .here(users => {
                     this.usersEditing = users;
                 })

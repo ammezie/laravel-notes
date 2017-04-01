@@ -1848,6 +1848,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['note'],
@@ -1856,7 +1859,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             title: this.note.title,
             body: this.note.body,
-            usersEditing: []
+            usersEditing: [],
+            status: ''
         };
     },
     mounted: function mounted() {
@@ -1870,11 +1874,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this.usersEditing = _this.usersEditing.filter(function (u) {
                 return u != user;
             });
+        }).listenForWhisper('editing', function (e) {
+            _this.title = e.title;
+            _this.body = e.body;
         });
     },
 
 
-    methods: {}
+    methods: {
+        editingNote: function editingNote() {
+            var _this2 = this;
+
+            var channel = Echo.join('note.' + this.note.slug);
+
+            // show changes after 1s
+            setTimeout(function () {
+                channel.whisper('editing', {
+                    title: _this2.title,
+                    body: _this2.body
+                });
+            }, 1000);
+        },
+        updateNote: function updateNote() {
+            var _this3 = this;
+
+            var note = {
+                title: this.title,
+                body: this.body
+            };
+
+            // persist to database
+            axios.patch('/edit/' + this.note.slug, note).then(function (response) {
+                _this3.status = response.data;
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -36696,6 +36730,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.title)
     },
     on: {
+      "keydown": _vm.editingNote,
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.title = $event.target.value
@@ -36718,14 +36753,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": (_vm.body)
     },
     on: {
+      "keydown": _vm.editingNote,
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.body = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('p', [_vm._v("\n            Users editing this note:  "), _c('span', {
+  })]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-primary pull-right",
+    on: {
+      "click": _vm.updateNote
+    }
+  }, [_vm._v("Save")]), _vm._v(" "), _c('p', [_vm._v("\n            Users editing this note:  "), _c('span', {
     staticClass: "badge"
-  }, [_vm._v(_vm._s(_vm.usersEditing.length))])])])])
+  }, [_vm._v(_vm._s(_vm.usersEditing.length))]), _vm._v(" "), _c('span', {
+    staticClass: "label label-success",
+    domProps: {
+      "textContent": _vm._s(_vm.status)
+    }
+  })])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

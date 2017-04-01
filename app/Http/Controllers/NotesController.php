@@ -82,6 +82,6 @@ class NotesController extends Controller
 
         $note->save();
 
-        return redirect('/');
+        return 'Saved!';
     }
 }

@@ -36,11 +36,11 @@
                 .here(users => {
                     this.usersEditing = users;
                 })
-                .joining((user) => {
-                    this.users.push(user);
+                .joining(user => {
+                    this.usersEditing.push(user);
                 })
-                .leaving((user) => {
-                    this.users.pop(user);
+                .leaving(user => {
+                    this.usersEditing = this.usersEditing.filter(u => u != user);
                 });
         },
 

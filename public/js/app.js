@@ -1865,9 +1865,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         Echo.join('note').here(function (users) {
             _this.usersEditing = users;
         }).joining(function (user) {
-            _this.users.push(user);
+            _this.usersEditing.push(user);
         }).leaving(function (user) {
-            _this.users.pop(user);
+            _this.usersEditing = _this.usersEditing.filter(function (u) {
+                return u != user;
+            });
         });
     },
 

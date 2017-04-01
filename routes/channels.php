@@ -12,5 +12,8 @@
 */
 
 Broadcast::channel('note', function ($user) {
-    return $user;
+    return [
+        'id'   => $user->id,
+        'name' => $user->name
+    ];
 });

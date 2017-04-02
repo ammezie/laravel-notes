@@ -9,7 +9,7 @@
                     <div class="panel-body">
                         @if($notes->isEmpty())
                             <p>
-                                You have not created any notes! <a href="{{ route('notes.create') }}">Create one</a> now.
+                                You have not created any notes! <a href="{{ url('create') }}">Create one</a> now.
                             </p>
                         @else
                         <ul class="list-group">

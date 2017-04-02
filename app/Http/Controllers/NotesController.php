@@ -19,7 +19,9 @@ class NotesController extends Controller
      */
     public function index()
     {
-        $notes = Note::orderBy('updated_at', 'DESC')->get();
+        $notes = Note::where('user_id', auth()->user()->id)
+                        ->orderBy('updated_at', 'DESC')
+                        ->get();
 
         return view('notes.index', compact('notes'));
     }

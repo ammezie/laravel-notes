@@ -49,6 +49,14 @@
                 .listenForWhisper('editing', (e) => {
                     this.title = e.title;
                     this.body = e.body;
+                })
+                .listenForWhisper('saved', (e) => {
+                    this.status = e.status;
+
+                    // clear is status after 1s
+                    setTimeout(() => {
+                        this.status = '';
+                    }, 1000);
                 });
         },
 
@@ -74,7 +82,19 @@
                 // persist to database
                 axios.patch(`/edit/${this.note.slug}`, note)
                     .then(response => {
+                        // show saved status
                         this.status = response.data;
+                         
+                        // clear is status after 1s
+                        setTimeout(() => {
+                            this.status = '';
+                        }, 1000);
+
+                        // show saved status to others
+                        Echo.join(`note.${this.note.slug}`)
+                            .whisper('saved', {
+                                status: response.data
+                            });
                     });
             }
         }

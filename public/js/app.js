@@ -1877,6 +1877,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }).listenForWhisper('editing', function (e) {
             _this.title = e.title;
             _this.body = e.body;
+        }).listenForWhisper('saved', function (e) {
+            _this.status = e.status;
+
+            // clear is status after 1s
+            setTimeout(function () {
+                _this.status = '';
+            }, 1000);
         });
     },
 
@@ -1905,7 +1912,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             // persist to database
             axios.patch('/edit/' + this.note.slug, note).then(function (response) {
+                // show saved status
                 _this3.status = response.data;
+
+                // clear is status after 1s
+                setTimeout(function () {
+                    _this3.status = '';
+                }, 1000);
+
+                // show saved status to others
+                Echo.join('note.' + _this3.note.slug).whisper('saved', {
+                    status: response.data
+                });
             });
         }
     }

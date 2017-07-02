@@ -12,7 +12,7 @@ git clone git@github.com:ammezie/laravel-notes.git
 If you use https, use this instead
 
 ```
-git clone https://github.com/ammezie/laravel-chat.git
+git clone https://github.com/ammezie/laravel-notes.git
 ```
 
 After cloning, run:

@@ -61,7 +61,7 @@ Also, remember to fill in the `cluster` of your Pusher app and other additional 
 ],
 ```
 
-### Database Migrations
+#### Database Migrations
 
 Be sure to fill in your database details in your `.env` file before running the migrations:
 
